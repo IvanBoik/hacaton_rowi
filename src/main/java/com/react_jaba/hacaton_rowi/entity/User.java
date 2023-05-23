@@ -1,11 +1,13 @@
 package com.react_jaba.hacaton_rowi.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
 @Table(name = "usr")
 @Data
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,5 +19,5 @@ public class User {
     private String phone;
     private String email;
     private char gender;
-    private int age;
+    private long age;
 }

@@ -12,11 +12,11 @@ public class ChatController {
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
 
-    @MessageMapping("/private-message") // /app/private-message
-    public ChatMessage receiveMessage(@Payload ChatMessage message) {
-        simpMessagingTemplate.convertAndSendToUser(message.getTo(), "/private", message); // /user/Ivan/private
-        return message;
-    }
+//    @MessageMapping("/private-message") // /app/private-message
+//    public ChatMessage receiveMessage(@Payload ChatMessage message) {
+//        simpMessagingTemplate.convertAndSendToUser(message.getTo(), "/private", message); // /user/Ivan/private
+//        return message;
+//    }
 
 //    @MessageMapping("/chat.sendMessage")
 //    @SendTo("/topic/javainuse")

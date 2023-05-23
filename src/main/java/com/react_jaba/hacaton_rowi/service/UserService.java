@@ -27,4 +27,8 @@ public class UserService {
     public User getUserByManagerID(long id) {
         return userRepository.getByManagerID(id).orElse(null);
     }
+
+    public User findById(long id) {
+        return userRepository.findById(id).orElse(null);
+    }
 }

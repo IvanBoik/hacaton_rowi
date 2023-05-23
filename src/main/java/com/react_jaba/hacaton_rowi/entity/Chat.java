@@ -17,14 +17,18 @@ public class Chat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @Column(name = "client_id")
+    private long clientId;
 
-    @OneToOne
-    @JoinColumn(name = "manager_id")
-    private Manager user;
+    @Column(name = "manager_id")
+    private long managerId;
+
+    @Column(name = "status", nullable = false)
+    private Status status;
 
     @Column(name = "date")
     private Timestamp dateOfCreate;
+
+    @Transient
+    private String lastMessageText;
 }

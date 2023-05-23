@@ -18,6 +18,11 @@ public class ChatController {
     @Autowired
     private ChatService chatService;
 
+    @GetMapping("/by_product_id/{id}")
+    public ResponseEntity<List<Chat>> getByProductId(@PathVariable long id) {
+        return ResponseEntity.ok(chatService.getByProductId(id));
+    }
+
     @GetMapping("/by_client_id/{id}")
     public ResponseEntity<List<Chat>> getByClientID(@PathVariable long id) {
         return ResponseEntity.ok(chatService.getByClientID(id));

@@ -9,7 +9,6 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @Configuration
 @EnableWebSocketMessageBroker
 public class ApplicationConfig implements WebSocketMessageBrokerConfigurer {
-
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws").setAllowedOriginPatterns("*").withSockJS();
@@ -20,7 +19,7 @@ public class ApplicationConfig implements WebSocketMessageBrokerConfigurer {
         registry.setApplicationDestinationPrefixes("/app");
         registry.setUserDestinationPrefix("/user");
         registry.enableStompBrokerRelay("/chatroom", "/user")
-                .setRelayHost("localhost")
+                .setRelayHost("192.168.157.195")
                 .setRelayPort(61613)
                 .setClientLogin("guest")
                 .setClientPasscode("guest");

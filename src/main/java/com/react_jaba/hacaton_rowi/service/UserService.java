@@ -15,4 +15,16 @@ public class UserService {
     public List<User> getUsers() {
         return userRepository.findAll();
     }
+
+    public User getUserByEmail(String email) {
+        return userRepository.getByEmail(email).orElse(null);
+    }
+
+    public User getUserByClientID(long id) {
+        return userRepository.getByClientID(id).orElse(null);
+    }
+
+    public User getUserByManagerID(long id) {
+        return userRepository.getByManagerID(id).orElse(null);
+    }
 }

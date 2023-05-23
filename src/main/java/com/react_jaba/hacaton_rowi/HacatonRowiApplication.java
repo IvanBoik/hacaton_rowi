@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-@SpringBootApplication(scanBasePackages = {"com.react_jaba.hacaton_rowi"})
+@SpringBootApplication(scanBasePackages = {"com"})
 public class HacatonRowiApplication {
 
     public static void main(String[] args) {

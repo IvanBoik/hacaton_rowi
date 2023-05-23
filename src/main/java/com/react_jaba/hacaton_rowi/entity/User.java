@@ -3,10 +3,12 @@ package com.react_jaba.hacaton_rowi.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
 @Entity
 @Table(name = "usr")
-@Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class User {
     @Id
@@ -19,5 +21,5 @@ public class User {
     private String phone;
     private String email;
     private char gender;
-    private long age;
+    private int age;
 }

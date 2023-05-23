@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+@Data
 @Entity
 @Table
-@Data
 @AllArgsConstructor
-public class Client {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-//    private User user;
+    private String title;
+    private String description;
 }

@@ -1,13 +1,16 @@
 package com.react_jaba.hacaton_rowi.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 @Data
-@Getter
-@Setter
-@NoArgsConstructor
+@Entity
+@Table
 @AllArgsConstructor
 public class ChatMessage {
-    private String from;
-    private String to;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+//    private User from;
+//    private Chat to;
 }

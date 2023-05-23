@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+@Data
 @Entity
 @Table
-@Data
 @AllArgsConstructor
-public class Client {
+public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

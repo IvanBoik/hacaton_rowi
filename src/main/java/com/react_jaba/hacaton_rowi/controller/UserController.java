@@ -33,13 +33,13 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserByClientID(id));
     }
 
-    @GetMapping("/by_manager_id/{id}")
-    public ResponseEntity<User> getUserByManagerID(@PathVariable long id) {
-        return ResponseEntity.ok(userService.getUserByClientID(id));
-    }
-
-    @GetMapping("/by_id/{id}")
-    public ResponseEntity<User> getUserByManagerID(@PathVariable String id) {
-        return ResponseEntity.ok(userService.findById(id));
-    }
+//    @GetMapping("/by_manager_id/{id}")
+//    public ResponseEntity<User> getUserByManagerID(@PathVariable long id) {
+//        return ResponseEntity.ok(userService.getUserByClientID(id));
+//    }
+//
+//    @GetMapping("/by_id/{id}")
+//    public ResponseEntity<User> getUserByManagerID(@PathVariable long id) {
+//        return ResponseEntity.ok(userService.findById(id));
+//    }
 }

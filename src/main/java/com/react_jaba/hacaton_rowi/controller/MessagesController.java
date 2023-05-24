@@ -19,8 +19,9 @@ public class MessagesController {
         return ResponseEntity.ok(messageService.getByChatId(id));
     }
 
-    @PostMapping("/addMessage")
+    @PostMapping("/add")
     public void postMessage(@RequestBody ChatMessage message) {
+        System.out.println(message);
         messageService.saveMessage(message);
     }
 

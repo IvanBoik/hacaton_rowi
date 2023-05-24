@@ -6,4 +6,5 @@ spring:
     oauth2:
       resourceserver:
         jwt:
+          issuer-uri: http://localhost:9090/auth/realms/chatservice-realm
           jwk-set-uri: ${KEYCLOAK_REALM_CERT_URL:http://localhost:9090/auth/realms/chatservice-realm/protocol/openid-connect/certs}

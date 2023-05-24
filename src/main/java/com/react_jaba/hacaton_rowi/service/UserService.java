@@ -6,6 +6,7 @@ import com.nimbusds.jwt.JWTParser;
 import com.react_jaba.hacaton_rowi.entity.User;
 import com.react_jaba.hacaton_rowi.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
@@ -35,22 +36,32 @@ public class UserService {
         return userRepository.getByManagerID(id).orElse(null);
     }
 
-    public User findById(String id) {
+    @SneakyThrows
+    public User findById(long id) {
         var user = userRepository.findById(id).orElse(null);
-        var authDetails = SecurityContextHolder.getContext().getAuthentication().getDetails().toString();
+        var credentials = SecurityContextHolder.getContext().getAuthentication().getCredentials();
 
         if (user == null) {
-            /*
-            Парсинг токена, создание нового пользователя, добавление в БД
-             */
+            var userMap = objectMapping(credentials);
+
             return null;
         }
         return user;
     }
 
-    private Map<String, Object> objectMapping(String object) throws ParseException {
-        JWT jwt = JWTParser.parse(object);
+    private Map<String, Object> objectMapping(Object object) throws ParseException {
+        JWT jwt = (JWT) object;
         JWTClaimsSet jwtClaimsSet = jwt.getJWTClaimsSet();
         return jwtClaimsSet.getClaims();
+    }
+
+    private User createUser(Map<String, Object> userMap) {
+        var user = new User();
+//            user.setId(userMap.get("sub"));
+        user.setName(((String) userMap.get("name")).split(" ")[0]);
+        user.setSurname(((String) userMap.get("name")).split(" ")[1]);
+        user.setEmail((String) userMap.get("email"));
+
+        return user;
     }
 }

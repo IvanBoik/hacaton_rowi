@@ -1,5 +1,6 @@
 package com.react_jaba.hacaton_rowi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,16 +14,18 @@ public class ChatMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "from")
-    private String from;
+    @Column(name = "sender")
+    private long from;
 
-    @Column(name = "to")
-    private String to;
+    @Column(name = "recipient")
+    private long to;
 
     @Column (name = "chat")
     private long chatId;
 
+    @Column (name = "text")
     private String text;
 
+    @Column (name = "date")
     private Timestamp date;
 }

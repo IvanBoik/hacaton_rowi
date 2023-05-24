@@ -2,9 +2,11 @@ package com.react_jaba.hacaton_rowi.controller;
 
 import com.react_jaba.hacaton_rowi.entity.Chat;
 import com.react_jaba.hacaton_rowi.service.ChatService;
+import jakarta.annotation.security.RolesAllowed;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,7 @@ public class ChatController {
     }
 
     @GetMapping("/by_client_id/{id}")
+    @PreAuthorize("hasAuthority('admin')")
     public ResponseEntity<List<Chat>> getByClientID(@PathVariable long id) {
         return ResponseEntity.ok(chatService.getByClientID(id));
     }

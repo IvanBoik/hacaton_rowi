@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 @Data
 @Entity
 @Table(name = "chat_message")
+@NoArgsConstructor
 public class ChatMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +20,7 @@ public class ChatMessage {
     @Column(name = "to")
     private long to;
 
-    @Column (name = "chat")
+    @Column(name = "chat")
     private long chatId;
 
     private String text;

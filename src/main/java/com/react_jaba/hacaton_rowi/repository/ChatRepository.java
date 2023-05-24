@@ -20,7 +20,6 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
     @Query(nativeQuery = true, value = "select chat.* from chat " +
             "join manager on chat.manager_id = manager.id " +
             "join product on manager.product_id = product.id " +
-            "where product.id = ?1"
-    )
+            "where product.id = ?1")
     List<Chat> getByProductId(long id);
 }

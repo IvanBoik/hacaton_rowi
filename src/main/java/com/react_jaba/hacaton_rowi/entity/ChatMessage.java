@@ -14,10 +14,10 @@ public class ChatMessage {
     private long id;
 
     @Column(name = "from")
-    private long from;
+    private String from;
 
     @Column(name = "to")
-    private long to;
+    private String to;
 
     @Column (name = "chat")
     private long chatId;

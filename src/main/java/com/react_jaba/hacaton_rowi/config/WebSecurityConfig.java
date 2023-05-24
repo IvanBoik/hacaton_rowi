@@ -39,28 +39,21 @@ public class WebSecurityConfig {
 
         http.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));
 
-        // Enable and configure CORS
         http.cors(cors -> cors.configurationSource(corsConfigurationSource("http://localhost:8080")));
 
-        // State-less session (state in access-token only)
         http.sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        // Disable CSRF because of state-less session-management
         http.csrf(AbstractHttpConfigurer::disable);
 
-        // Return 401 (unauthorized) instead of 302 (redirect to login) when
-        // authorization is missing or invalid
         http.exceptionHandling(eh -> eh.authenticationEntryPoint((request, response, authException) -> {
             response.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Restricted Content\"");
             response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
         }));
 
-        // @formatter:off
         http.authorizeHttpRequests(accessManagement -> accessManagement
                 .requestMatchers("/actuator/health/readiness", "/actuator/health/liveness", "/v3/api-docs/**").permitAll()
                 .anyRequest().authenticated()
         );
-        // @formatter:on
 
         return http.build();
     }
@@ -100,11 +93,11 @@ public class WebSecurityConfig {
                             return Stream.of(claimArr);
                         }
                         if (Collection.class.isAssignableFrom(claim.getClass())) {
-                            final var iter = ((Collection) claim).iterator();
-                            if (!iter.hasNext()) {
+                            final var iterator = ((Collection) claim).iterator();
+                            if (!iterator.hasNext()) {
                                 return Stream.empty();
                             }
-                            final var firstItem = iter.next();
+                            final var firstItem = iterator.next();
                             if (firstItem instanceof String) {
                                 return (Stream<String>) ((Collection) claim).stream();
                             }

@@ -39,7 +39,7 @@ public class WebSecurityConfig {
 
         http.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));
 
-        http.cors(cors -> cors.configurationSource(corsConfigurationSource("http://localhost:8080")));
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
         http.sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
@@ -51,16 +51,16 @@ public class WebSecurityConfig {
         }));
 
         http.authorizeHttpRequests(accessManagement -> accessManagement
-                .requestMatchers("/actuator/health/readiness", "/actuator/health/liveness", "/v3/api-docs/**").permitAll()
+                .requestMatchers("/auth**").permitAll()
                 .anyRequest().authenticated()
         );
 
         return http.build();
     }
 
-    private CorsConfigurationSource corsConfigurationSource(String... origins) {
+    private CorsConfigurationSource corsConfigurationSource() {
         final var configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList(origins));
+        configuration.setAllowedOrigins(List.of("*"));
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setExposedHeaders(List.of("*"));

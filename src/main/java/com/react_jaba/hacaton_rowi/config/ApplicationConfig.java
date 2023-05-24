@@ -23,10 +23,10 @@ public class ApplicationConfig implements WebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes("/app");
         registry.setUserDestinationPrefix("/user");
-        registry.enableStompBrokerRelay("/chatroom", "/user")
-                .setRelayHost("192.168.157.195")
-                .setRelayPort(61613)
-                .setClientLogin("guest")
-                .setClientPasscode("guest");
+//        registry.enableStompBrokerRelay("/chatroom", "/user")
+//                .setRelayHost("192.168.157.195")
+//                .setRelayPort(61613)
+//                .setClientLogin("guest")
+//                .setClientPasscode("guest");
     }
 }
